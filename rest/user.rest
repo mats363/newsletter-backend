@@ -1,0 +1,29 @@
+GET http://localhost:4000/user
+
+###
+
+POST http://localhost:4000/user
+Content-Type: application/json
+
+{
+    "name": "Åke Bakander",
+    "email": "ake@sten.com",
+    "password": "hejsan",
+    "subStatus": false 
+}
+
+###
+DELETE http://localhost:4000/user/628fbdcb236fac470936b7c2
+###
+
+PUT http://localhost:4000/user
+Content-Type: application/json
+
+ {
+    "_id": "628fc1fc8fa25e4fc1abdc6b",
+    "name": "Åke Bakander",
+    "email": "ake@sten.com",
+    "password": "hejsan",
+    "subStatus": false 
+ }
+

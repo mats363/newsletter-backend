@@ -1,0 +1,37 @@
+<h1>Välkommen admin </h1>
+<h3>Dessa personer prenumererar på nyhetsbrevet</h3>
+
+    <% for(var i=0; i<users.length; i++) {%>
+        <% if (users[i].subStatus === true) { %>
+           
+            <div>
+                <ul>
+                    <li><%= "Namn: " + users[i].name %> </li>
+                    <li><%= "Id: " + users[i].id %> </li>
+                    <li><%= "Epost: " + users[i].email %> </li>
+                    <br>
+                </ul>
+             </div>  
+        <% } %>
+          
+    <% } %> 
+    </ul>
+
+
+<h3>Här är alla medlemmar</h3>
+
+<% for(var i=0; i<users.length; i++) {%>
+    
+       
+        <div>
+            <ul>
+                <li><%= "Namn: " + users[i].name %> </li>
+                <li><%= "Id: " + users[i].id %> </li>
+                <li><%= "Epost: " + users[i].email %> </li>
+                <br>
+            </ul>
+         </div>  
+   
+      
+<% } %> 
+</ul>

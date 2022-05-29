@@ -1,15 +1,30 @@
 const express = require('express');
-const { reset } = require('nodemon');
 const router = express.Router();
 const UserModel = require('../models/User');
+const cors = require('cors')
+
+router.use(cors());
+
 
 router.get("/", async (req, res)=>{
     const users = await UserModel.find();
     res.status(200).json(users);
-    //res.render("index.ejs")
+    res.render("index.ejs")
 });
 
+router.get("/:user", async (req, res) => {
+    try {
+        const userMatch = await UserModel.findById({_id: _id});
+        res.status(200).json(userMatch)
+    } catch {
+        res.status(404).json(userMatch);
+        res.send("Ingen användare hittades")
+    }
+    
+})
+
 router.post("/", async (req, res) => {
+    // Kolla här om eposten redan är registrerad
     const user = new UserModel(req.body);
     await user.save();
 

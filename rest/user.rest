@@ -2,6 +2,9 @@ GET http://localhost:4000/user
 
 ###
 
+GET http://localhost:4000/user/6290b2de6ca53262ab602542
+
+###
 POST http://localhost:4000/user
 Content-Type: application/json
 
@@ -24,6 +27,6 @@ Content-Type: application/json
     "name": "Åke Bakander",
     "email": "ake@sten.com",
     "password": "hejsan",
-    "subStatus": false 
+    "subStatus": true 
  }
 

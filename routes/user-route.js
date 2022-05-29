@@ -1,26 +1,39 @@
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/User');
+const bcrypt = require('bcrypt');
 const cors = require('cors')
 
+router.use(express.urlencoded({extended: false}));
 router.use(cors());
+router.use(express.json())
 
-
-router.get("/", async (req, res)=>{
+router.get("/", async (req, res) => {
     const users = await UserModel.find();
     res.status(200).json(users);
     res.render("index.ejs")
 });
 
-router.get("/:user", async (req, res) => {
-    try {
-        const userMatch = await UserModel.findById({_id: _id});
-        res.status(200).json(userMatch)
-    } catch {
-        res.status(404).json(userMatch);
-        res.send("Ingen användare hittades")
+
+router.post("/userlogin", async (req, res) => { // Om man deployar till molnet, ställ in "alla ip-adresser"
+
+    const user = await UserModel.findOne({ email: req.body.email });
+    console.log(user);
+    if (user == null) {
+        return res.status(400).json("Can't find user");
     }
-    
+
+    try {
+        if (req.body.password == user.password) {
+            return res.status(200).json(user);
+        } else {
+            return res.status(401).json("Wrong password");
+        }
+    } catch {
+        res.status(500).send;
+    }
+
+
 })
 
 router.post("/", async (req, res) => {

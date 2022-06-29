@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
     res.status(201).json(user);
 })
 
-router.put("/", async (req, res) => {
+router.patch("/", async (req, res) => {
     const {_id, subStatus} = req.body;
          // Hämtar om id är samma
     const user = await UserModel.findById({_id: _id});
@@ -56,6 +56,11 @@ router.put("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     await UserModel.findByIdAndDelete({_id: req.params.id});
     res.status(200).json("User deleted");
+})
+
+router.get("/:id", async (req, res) => {
+    const foundUser = await UserModel.findById({_id: req.params.id});
+    res.json(foundUser.subStatus)
 })
 
 module.exports = router;

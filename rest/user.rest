@@ -15,10 +15,10 @@ POST http://localhost:4000/user
 Content-Type: application/json
 
 {
-    "name": "Hans",
-    "email": "hans@hans.se",
-    "password": "hans",
-    "subStatus": false 
+    "name": "Greta",
+    "email": "greta@hans.se",
+    "password": "greta",
+    "subStatus": true 
 }
 
 ###
@@ -27,11 +27,14 @@ DELETE http://localhost:4000/user/628fbdcb236fac470936b7c2
 
 ###
 
-PUT http://localhost:4000/user
+PATCH http://localhost:4000/user
 Content-Type: application/json
 
  {
-    "_id": "6293bee904d4566c8419d75b",
-    "subStatus": false 
+    "_id": "62b3fbe016dc8e3b05a6dc4a",
+    "subStatus": true 
  }
 
+###
+
+GET http://localhost:4000/user/62b3fbe016dc8e3b05a6dc4a

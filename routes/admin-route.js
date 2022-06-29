@@ -7,7 +7,7 @@ router.use(cors());
 
 router.get("/", async (req, res) => {
     const users = await UserModel.find();
-    //res.status(200).json(users);
+    
     let showSub = false;
     function view () {
         showSub = !showSub;

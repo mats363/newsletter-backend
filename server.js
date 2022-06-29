@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
-//var cookieParser = require('cookie-parser');
-//var logger = require('morgan');
+
 var mongoose = require('mongoose')
 const userRoute = require("./routes/user-route");
 const loginRoute = require("./routes/login-route");
@@ -12,7 +11,6 @@ const app = express();
 app.set("view-engine", "ejs");
 app.use(express.json());
 
-//app.use(express.static("./public"))
 app.use(express.urlencoded({extended: false}));
 app.use("/user", userRoute);
 app.use("/login", loginRoute);

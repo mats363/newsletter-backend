@@ -36,7 +36,6 @@ router.post("/", async (req, res) => {
 
 router.patch("/", async (req, res) => {
     const {_id, subStatus} = req.body;
-         // Hämtar om id är samma
     const user = await UserModel.findById({_id: _id});
     user.subStatus = subStatus;
     await user.save(user);
@@ -45,8 +44,13 @@ router.patch("/", async (req, res) => {
 
 
 router.get("/:id", async (req, res) => {
-    const foundUser = await UserModel.findById({_id: req.params.id});
-    res.json(foundUser.subStatus)
+    try {
+        const foundUser = await UserModel.findById({_id: req.params.id});
+        res.json(foundUser.subStatus)
+    } catch (error) {
+        res.status(500).send;
+    }
+    
 })
 
 module.exports = router;

@@ -1,10 +1,10 @@
 var express = require('express');
 var path = require('path');
-
 var mongoose = require('mongoose')
 const userRoute = require("./routes/user-route");
 const loginRoute = require("./routes/login-route");
-const adminRoute = require("./routes/admin-route");
+
+
 const cors = require('cors');
 
 const app = express();
@@ -14,7 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use("/user", userRoute);
 app.use("/login", loginRoute);
-app.use("/admin", adminRoute);
+
+
 
 app.use(cors())
 
@@ -30,16 +31,8 @@ async function init() {
 
 init(); // Kör igång servern
 
-
-
-
-/*
-app.post("/login", (req, res) => {
-
-});
-*/
-app.post("/register", (req, res) => {
-    res.send("Registered user");
+app.get("/", (req, res) => {
+    res.render("index.ejs")
 })
 
 module.exports = app;

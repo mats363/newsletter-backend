@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/User');
-const bcrypt = require('bcrypt');
 const cors = require('cors')
 
 router.use(express.urlencoded({extended: false}));
@@ -9,11 +8,10 @@ router.use(cors());
 router.use(express.json())
 
 router.get("/", async (req, res) => {
-    const users = await UserModel.find();
-    res.status(200).json(users);
-    res.render("index.ejs")
+    // const users = await UserModel.find();
+    // res.status(200).json(users);
+    // res.render("index.ejs")
 });
-
 
 router.post("/userlogin", async (req, res) => { // Om man deployar till molnet, ställ in "alla ip-adresser"
 
@@ -32,12 +30,9 @@ router.post("/userlogin", async (req, res) => { // Om man deployar till molnet, 
     } catch {
         res.status(500).send;
     }
-
-
 })
 
 router.post("/", async (req, res) => {
-    // Kolla här om eposten redan är registrerad
     const user = new UserModel(req.body);
     await user.save();
 
@@ -53,10 +48,6 @@ router.patch("/", async (req, res) => {
     res.status(200).json(user);
 });
 
-router.delete("/:id", async (req, res) => {
-    await UserModel.findByIdAndDelete({_id: req.params.id});
-    res.status(200).json("User deleted");
-})
 
 router.get("/:id", async (req, res) => {
     const foundUser = await UserModel.findById({_id: req.params.id});

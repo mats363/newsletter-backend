@@ -7,13 +7,8 @@ router.use(express.urlencoded({extended: false}));
 router.use(cors());
 router.use(express.json())
 
-router.get("/", async (req, res) => {
-    // const users = await UserModel.find();
-    // res.status(200).json(users);
-    // res.render("index.ejs")
-});
 
-router.post("/userlogin", async (req, res) => { // Om man deployar till molnet, ställ in "alla ip-adresser"
+router.post("/userlogin", async (req, res) => { 
 
     const user = await UserModel.findOne({ email: req.body.email });
     console.log(user);
